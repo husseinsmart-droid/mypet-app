@@ -1,47 +1,490 @@
-<div style="display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-  <!-- Google Play -->
-  <a href="https://play.google.com/store/apps/details?id=com.mdsoft.my_pet&pcampaignid=web_share"
-     target="_blank"
-     style="
-      width:58px;
-      height:58px;
-      border-radius:16px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:.25s;
-     "
-     onmouseover="this.style.transform='translateY(-4px)'"
-     onmouseout="this.style.transform='translateY(0)'">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path d="M3 2v20l15-10L3 2zm16.5 9L21 12l-1.5 1V11z"/>
-    </svg>
-  </a>
+  <title>My Pet</title>
 
-  <!-- App Store -->
-  <a href="https://apps.apple.com/iq/app/my-pet/id6759252281?l=ar"
-     target="_blank"
-     style="
-      width:58px;
-      height:58px;
-      border-radius:16px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:.25s;
-     "
-     onmouseover="this.style.transform='translateY(-4px)'"
-     onmouseout="this.style.transform='translateY(0)'">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path d="M16.365 1.43c0 1.14-.414 2.197-1.09 2.965-.73.83-1.92 1.47-3.03 1.38-.14-1.09.39-2.25 1.08-3 .75-.82 2.03-1.42 3.04-1.35zm4.3 16.22c-.59 1.35-.87 1.95-1.63 3.17-1.06 1.7-2.56 3.82-4.42 3.84-1.66.02-2.09-1.08-4.35-1.07-2.26.01-2.73 1.09-4.39 1.07-1.86-.02-3.28-1.94-4.34-3.64C-1.45 16.6-.87 9.9 2.6 7.13c1.23-.99 2.83-1.58 4.33-1.58 1.61 0 2.62 1.09 4.36 1.09 1.69 0 2.72-1.09 4.34-1.09 1.34 0 2.76.49 3.98 1.42-3.5 1.92-2.94 6.95 1.05 8.68z"/>
-    </svg>
-  </a>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-</div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #05261f;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 40px 20px;
+      background:
+        radial-gradient(circle at top left, rgba(0, 255, 170, 0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 255, 170, 0.08), transparent 35%),
+        #05261f;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo img {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, #19d39a, #0fb985);
+      color: #04251d;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 800;
+      transition: .3s;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 58px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+
+    .hero-text p {
+      color: rgba(255,255,255,.7);
+      line-height: 2;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 26px;
+      border-radius: 18px;
+      font-weight: 800;
+      transition: .3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #19d39a, #0fb985);
+      color: #04251d;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 32px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .hero-card h3 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      font-weight: 900;
+    }
+
+    .hero-card p {
+      color: rgba(255,255,255,.65);
+      margin-bottom: 24px;
+    }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .qr-box {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .qr-box h4 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .qr-box img.qr {
+      width: 100%;
+      max-width: 180px;
+      border-radius: 20px;
+      background: white;
+      padding: 10px;
+      margin-bottom: 18px;
+    }
+
+    .store-icons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .store-icons a {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .25s;
+    }
+
+    .store-icons a:hover {
+      transform: translateY(-4px);
+      background: rgba(25,211,154,.18);
+    }
+
+    .store-icons img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .features {
+      padding: 90px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,.65);
+      max-width: 700px;
+      margin: auto auto 50px;
+      line-height: 2;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 26px;
+      padding: 26px;
+      transition: .3s;
+    }
+
+    .feature:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature span {
+      font-size: 42px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .feature h4 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .feature p {
+      color: rgba(255,255,255,.65);
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      padding: 24px;
+      color: rgba(255,255,255,.5);
+    }
+
+    @media(max-width:950px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media(max-width:650px) {
+
+      .hero-text h2 {
+        font-size: 40px;
+      }
+
+      .qr-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="topbar">
+
+        <div class="logo">
+          <img src="logo.png" alt="MyPet">
+          <h1>My Pet</h1>
+        </div>
+
+        <a class="download-btn" href="#download">
+          تحميل التطبيق
+        </a>
+
+      </div>
+
+      <div class="hero-grid">
+
+        <div class="hero-text">
+
+          <h2>
+            كل ما يحتاجه حيوانك الأليف في تطبيق واحد
+          </h2>
+
+          <p>
+            منصة متكاملة للحيوانات الأليفة تشمل المتاجر، العيادات، التبني،
+            الحيوانات المفقودة، QR ID، والخدمات البيطرية الحديثة.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a class="btn btn-primary"
+              href="https://play.google.com/store/apps/details?id=com.mdsoft.my_pet&pcampaignid=web_share"
+              target="_blank">
+              تحميل Android
+            </a>
+
+            <a class="btn btn-secondary"
+              href="https://apps.apple.com/iq/app/my-pet/id6759252281?l=ar"
+              target="_blank">
+              تحميل iPhone
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-card" id="download">
+
+          <h3>حمّل التطبيق</h3>
+
+          <p>
+            امسح الباركود أو استخدم الأيقونات المباشرة.
+          </p>
+
+          <div class="qr-grid">
+
+            <div class="qr-box">
+
+              <h4>Android</h4>
+
+              <img class="qr" src="google play code.jpg" alt="Android QR">
+
+              <div class="store-icons">
+
+                <a href="https://play.google.com/store/apps/details?id=com.mdsoft.my_pet&pcampaignid=web_share"
+                  target="_blank">
+
+                  <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png">
+
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="qr-box">
+
+              <h4>iPhone</h4>
+
+              <img class="qr" src="App Store code.jpg" alt="iPhone QR">
+
+              <div class="store-icons">
+
+                <a href="https://apps.apple.com/iq/app/my-pet/id6759252281?l=ar"
+                  target="_blank">
+
+                  <img src="https://cdn-icons-png.flaticon.com/512/831/831276.png">
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="features">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        خدمات My Pet
+      </h2>
+
+      <p class="section-sub">
+        تجربة حديثة ومتكاملة لإدارة الحيوانات الأليفة بسهولة وأمان.
+      </p>
+
+      <div class="features-grid">
+
+        <div class="feature">
+          <span>🐾</span>
+          <h4>هوية QR</h4>
+          <p>
+            تعريف رقمي للحيوان يساعد في العثور عليه عند الفقدان.
+          </p>
+        </div>
+
+        <div class="feature">
+          <span>🏥</span>
+          <h4>العيادات</h4>
+          <p>
+            الوصول السريع للعيادات والخدمات البيطرية.
+          </p>
+        </div>
+
+        <div class="feature">
+          <span>🛍️</span>
+          <h4>المتاجر</h4>
+          <p>
+            شراء مستلزمات الحيوانات الأليفة بسهولة.
+          </p>
+        </div>
+
+        <div class="feature">
+          <span>❤️</span>
+          <h4>التبني والمفقودات</h4>
+          <p>
+            قسم خاص بالحيوانات المفقودة والتبني والإعلانات.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 My Pet — All Rights Reserved
+  </footer>
+
+</body>
+
+</html>
